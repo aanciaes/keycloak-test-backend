@@ -1,0 +1,10 @@
+{
+  "realm": "waterdog",
+  "bearer-only": true,
+  "auth-server-url": "http://ec2-54-175-112-125.compute-1.amazonaws.com:8080/auth",
+  "ssl-required": "none",
+  "resource": "waterdog-backend",
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
