@@ -44,7 +44,7 @@ app.use(keycloak.middleware({
     logout: '/logout'
 }));
 app.use("/public", PublicRoutes_1.default());
-app.use("/user", keycloak.protect('admin'), UsersRoutes_1.default());
+app.use("/user", UsersRoutes_1.default());
 app.use("/protected", keycloak.protect(), Protected_1.default());
 app.use("/admin", keycloak.protect('admin'), AdminRoutes_1.default());
 var port = 3000;

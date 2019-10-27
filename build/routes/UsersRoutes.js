@@ -45,7 +45,7 @@ var requiredActionProviderRepresentation_1 = require("keycloak-admin/lib/defs/re
 var usersRoutes = function () {
     var router = express_1.Router();
     var kcAdminClient = new keycloak_admin_1.default({
-        baseUrl: 'http://ec2-54-175-112-125.compute-1.amazonaws.com:8080/auth',
+        baseUrl: 'http://ec2-13-58-116-147.us-east-2.compute.amazonaws.com:8080/auth',
         realmName: 'waterdog',
     });
     // Authorize with username / password
@@ -54,7 +54,7 @@ var usersRoutes = function () {
         password: '',
         grantType: 'client_credentials',
         clientId: "waterdog-backend",
-        clientSecret: "dbc63a70-4914-4fe2-bca9-9b2b2d58de11"
+        clientSecret: "ec8a7668-19a5-4e9b-a4e8-e4044e108383"
     }).then(function (client) {
         console.log("Authentication Successful");
     }).catch(function (err) {
@@ -66,14 +66,14 @@ var usersRoutes = function () {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 6, , 7]);
-                    cmd = req.body;
+                    cmd = req.body.data;
                     credentials = { value: cmd.password, type: "password" };
                     requiredActions = [];
                     if (cmd.temporaryCredentials) {
                         requiredActions.push(requiredActionProviderRepresentation_1.RequiredActionAlias.UPDATE_PASSWORD);
                     }
                     return [4 /*yield*/, kcAdminClient.clients.findRole({
-                            id: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
+                            id: "a01c4257-7723-41fe-81d3-66b1668278a3",
                             roleName: cmd.role
                         })];
                 case 1:
@@ -93,10 +93,9 @@ var usersRoutes = function () {
                     })];
                 case 3:
                     user = _a.sent();
-                    console.log("here");
                     return [4 /*yield*/, kcAdminClient.users.addClientRoleMappings({
                             id: user.id,
-                            clientUniqueId: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
+                            clientUniqueId: "a01c4257-7723-41fe-81d3-66b1668278a3",
                             // at least id and name should appear
                             roles: [
                                 {
@@ -112,7 +111,7 @@ var usersRoutes = function () {
                 case 5: return [3 /*break*/, 7];
                 case 6:
                     e_1 = _a.sent();
-                    console.error(e_1);
+                    console.error(e_1.message);
                     res.status(500).send({ error: e_1.message });
                     return [3 /*break*/, 7];
                 case 7: return [2 /*return*/];

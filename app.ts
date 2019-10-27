@@ -32,6 +32,7 @@ app.use(session({
 }));
 
 const keycloak = new Keycloak({store: memoryStore});
+keycloak.redirectToLogin = () => false;
 
 app.use(keycloak.middleware({
     logout: '/logout'
@@ -39,7 +40,7 @@ app.use(keycloak.middleware({
 
 app.use("/public", publicRoutes());
 
-app.use("/user", usersRoutes());
+app.use("/user", keycloak.protect('admin'), usersRoutes());
 app.use("/protected", keycloak.protect(), protectedRoutes());
 app.use("/admin", keycloak.protect('admin'), adminRoutes());
 
