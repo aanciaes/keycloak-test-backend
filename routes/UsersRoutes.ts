@@ -7,7 +7,7 @@ const usersRoutes = (): Router => {
     const router = Router();
 
     const kcAdminClient = new KcAdminClient({
-        baseUrl: 'http://ec2-54-175-112-125.compute-1.amazonaws.com:8080/auth',
+        baseUrl: 'http://ec2-13-58-116-147.us-east-2.compute.amazonaws.com:8080/auth',
         realmName: 'waterdog',
     });
 
@@ -17,7 +17,7 @@ const usersRoutes = (): Router => {
         password: '',
         grantType: 'client_credentials',
         clientId: "waterdog-backend",
-        clientSecret: "dbc63a70-4914-4fe2-bca9-9b2b2d58de11"
+        clientSecret: "ec8a7668-19a5-4e9b-a4e8-e4044e108383"
     }).then((client) => {
         console.log("Authentication Successful");
     }).catch((err) => {
@@ -34,7 +34,7 @@ const usersRoutes = (): Router => {
             }
 
             const role = await kcAdminClient.clients.findRole({
-                id: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
+                id: "a01c4257-7723-41fe-81d3-66b1668278a3",
                 roleName: cmd.role
             });
 
@@ -55,7 +55,7 @@ const usersRoutes = (): Router => {
 
                 await kcAdminClient.users.addClientRoleMappings({
                     id: user.id,
-                    clientUniqueId: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
+                    clientUniqueId: "a01c4257-7723-41fe-81d3-66b1668278a3",
 
                     // at least id and name should appear
                     roles: [
