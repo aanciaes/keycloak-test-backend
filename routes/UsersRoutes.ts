@@ -1,10 +1,7 @@
 import {Router} from "express";
 import KcAdminClient from 'keycloak-admin';
-import UserRepresentation from "keycloak-admin/lib/defs/userRepresentation";
 import {RequiredActionAlias} from "keycloak-admin/lib/defs/requiredActionProviderRepresentation";
 import CredentialRepresentation from "keycloak-admin/lib/defs/credentialRepresentation";
-
-
 
 const usersRoutes = (): Router => {
     const router = Router();
@@ -29,7 +26,7 @@ const usersRoutes = (): Router => {
 
     router.post("/", async (req, res) => {
         try {
-            const cmd: { username: string, password: string, email: string, temporaryCredentials: boolean, role: string } = req.body;
+            const cmd: { username: string, password: string, email: string, temporaryCredentials: boolean, role: string } = req.body.data;
             const credentials: CredentialRepresentation = {value: cmd.password, type: "password"};
             const requiredActions = [];
             if (cmd.temporaryCredentials){
@@ -44,7 +41,6 @@ const usersRoutes = (): Router => {
             if (!role) {
                 res.send({error: "No role named: " + cmd.role})
             } else {
-
                 const user = await kcAdminClient.users.create({
                     username: cmd.username,
                     email: cmd.email,
@@ -73,6 +69,7 @@ const usersRoutes = (): Router => {
                 res.status(200).send(user)
             }
         } catch (e) {
+            console.error(e.message);
             res.status(500).send({error: e.message})
         }
     });

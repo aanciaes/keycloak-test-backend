@@ -65,7 +65,7 @@ var usersRoutes = function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 5, , 6]);
+                    _a.trys.push([0, 6, , 7]);
                     cmd = req.body;
                     credentials = { value: cmd.password, type: "password" };
                     requiredActions = [];
@@ -80,42 +80,42 @@ var usersRoutes = function () {
                     role = _a.sent();
                     if (!!role) return [3 /*break*/, 2];
                     res.send({ error: "No role named: " + cmd.role });
-                    return [3 /*break*/, 4];
+                    return [3 /*break*/, 5];
                 case 2: return [4 /*yield*/, kcAdminClient.users.create({
                         username: cmd.username,
                         email: cmd.email,
                         enabled: true,
                         credentials: [credentials],
                         requiredActions: requiredActions,
-                        clientRoles: {
-                            "waterdog-backend": cmd.role
-                        },
                         attributes: {
                             githubUser: ["false"],
                         }
                     })];
                 case 3:
                     user = _a.sent();
-                    /*await kcAdminClient.users.addClientRoleMappings({
-                        id: user.id,
-                        clientUniqueId: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
-    
-                        // at least id and name should appear
-                        roles: [
-                            {
-                                id: role.id,
-                                name: role.name,
-                            },
-                        ],
-                    });*/
+                    console.log("here");
+                    return [4 /*yield*/, kcAdminClient.users.addClientRoleMappings({
+                            id: user.id,
+                            clientUniqueId: "c414b1bf-9ac7-434e-98f9-c5e05f41f6b3",
+                            // at least id and name should appear
+                            roles: [
+                                {
+                                    id: role.id,
+                                    name: role.name,
+                                },
+                            ],
+                        })];
+                case 4:
+                    _a.sent();
                     res.status(200).send(user);
-                    _a.label = 4;
-                case 4: return [3 /*break*/, 6];
-                case 5:
+                    _a.label = 5;
+                case 5: return [3 /*break*/, 7];
+                case 6:
                     e_1 = _a.sent();
+                    console.error(e_1);
                     res.status(500).send({ error: e_1.message });
-                    return [3 /*break*/, 6];
-                case 6: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     }); });
