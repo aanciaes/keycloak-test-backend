@@ -1,7 +1,7 @@
 {
   "realm": "waterdog",
-  "auth-server-url": "https://ec2-13-58-116-147.us-east-2.compute.amazonaws.com:8443/auth",
-  "ssl-required": "external",
+  "auth-server-url": "http://ec2-13-58-116-147.us-east-2.compute.amazonaws.com:8080/auth",
+  "ssl-required": "none",
   "resource": "waterdog-backend",
   "credentials": {
     "secret": "ec8a7668-19a5-4e9b-a4e8-e4044e108383"
