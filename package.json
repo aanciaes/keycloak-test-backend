@@ -20,7 +20,7 @@
     "keycloak-admin": "^1.13.0",
     "keycloak-connect": "7.0.0",
     "morgan": "~1.9.1",
-    "pug": "^2.0.4"
+    "pug": "^3.0.1"
   },
   "devDependencies": {
     "ts-node-dev": "1.0.0-pre.40",
